@@ -1,11 +1,11 @@
 defmodule Day3Part2Process do
 
   def number_of_houses_for_both do
-    input = File.read!("input")
-    |> String.trim_trailing
-    |> String.graphemes
-
-    %{ santa: santa_path, robo_santa: robo_santa_path } = split_input(input, :robo_santa)
+    %{ santa: santa_path, robo_santa: robo_santa_path } = 
+      File.read!("input")
+        |> String.trim_trailing
+        |> String.graphemes
+        |> split_input
 
     result_task_santa = 
       Task.async(fn -> number_of_houses(santa_path, [[x: 0, y: 0]]) end)
@@ -19,7 +19,7 @@ defmodule Day3Part2Process do
     |> Enum.count
   end
 
-  defp split_input(input_list, previous, acc \\ %{ santa: [], robo_santa: []})
+  defp split_input(input_list, previous \\ :robo_santa, acc \\ %{ santa: [], robo_santa: []})
   defp split_input([], _, acc), do: acc
 
   defp split_input([head | tail], previous, acc) do
