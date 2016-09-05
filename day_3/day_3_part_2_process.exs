@@ -14,9 +14,6 @@ defmodule Day3Part2Process do
       Task.async(fn -> number_of_houses(robo_santa_path, [[x: 0, y: 0]]) end)
       |> Task.await
 
-    # result_task_santa = Task.await(task_santa)
-    # result_task_robo_santa = Task.await(task_robo_santa)
-
     Enum.sort(result_task_santa++result_task_robo_santa)
     |> Enum.dedup_by(fn([x, y]) -> [x,y] end)
     |> Enum.count
