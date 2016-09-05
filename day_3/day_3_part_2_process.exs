@@ -36,6 +36,7 @@ defmodule Day3Part2Process do
     split_input(tail, current_character, new_acc)
   end
 
+  defp number_of_houses([], grid), do: grid
   defp number_of_houses([move | tail], [[x: last_x, y: last_y] | _] = grid) do
     case move do
       "^" ->
@@ -48,6 +49,4 @@ defmodule Day3Part2Process do
         number_of_houses(tail, [[x: last_x - 1, y: last_y] | grid])
     end
   end
-
-  defp number_of_houses([], grid), do: grid
 end
